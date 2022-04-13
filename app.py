@@ -1,3 +1,6 @@
 res = input("Skriv noget her")
 
-print("res")
+print(f"{res}")
+
+
+du er en fisse
