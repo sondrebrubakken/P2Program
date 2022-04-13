@@ -1,10 +1,4 @@
-res = input("Skriv noget her")
+from aacr import app
 
-print(f"{res}")
-
-
-du er en fisse med nosser
-
-
-
-sut pik
+if __name__ == '__main__':
+    app.run(debug=True)
