@@ -1,0 +1,43 @@
+
+
+
+.grid {
+    margin: 0;
+    display: grid;
+    padding: 0;
+    grid-template-columns: 33.333333% 33.333333% 33.333333%;
+    grid-row-gap: 50px;
+    width: fit-content;
+    margin: 0 auto;
+
+}
+
+.box{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    margin: 50px;
+}
+
+.desc {
+    background-color: #f7f7f7;
+    margin-left:50px;
+    margin-top: -40px;
+    
+    width: 189px;
+    border: 2px solid black;
+
+    padding-left: 8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+.navbar2{
+    margin-bottom: 2em;
+    display: inline-block;
+}
+
+.navbar2 ul{
+    list-style-type: none;
+}
