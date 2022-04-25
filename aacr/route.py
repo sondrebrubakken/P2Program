@@ -14,3 +14,7 @@ def cal():
 @app.route("/routes")
 def routes():
     return render_template("routes.html", title="Ruter")
+
+@app.route("/login")
+def login():
+    return render_template("login.html", title="Login")
