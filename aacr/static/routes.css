@@ -147,8 +147,11 @@ body {
   }
 }
 
+.navbar2 {
+  margin: top 2em;
+}
 
-.navbar2{
-    display: block;
-    position: absolute;
+main {
+  display: flex;
+  position: absolute;
 }
