@@ -30,19 +30,19 @@ body {
     margin-right: 35px;
 
     a {
-      text-decoration: none;
-      padding: 10px;
-      border-radius: 10px;
-      color: black;
-      font-family: Montserrat;
-      transition: background 0.3s, border 0.3s;
-      border: 1px solid transparent;
-
-      &:hover {
-        background: hsl(0, 0, 91);
-        border: 1px solid gray;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 10px;
+        color: black;
+        font-family: Montserrat;
+        transition: background 0.3s, border 0.3s;
+        border: 1px solid transparent;
+  
+        &:hover {
+          background: hsl(0, 0, 91);
+          border: 1px solid gray;
+        }
       }
-    }
 
     .button {
       background: hsl(0, 0, 10);
@@ -147,8 +147,10 @@ body {
   }
 }
 
-
-.navbar2{
-    display: block;
+main{
+    display: flex;
     position: absolute;
 }
+
+
+
