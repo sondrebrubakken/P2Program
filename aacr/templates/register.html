@@ -12,9 +12,21 @@
                         </div>
                     </tr>
                     <tr>
+                        <div class="email">
+                            <td>{{ form.email.label() }}</td>
+                            <td>{{ form.email() }}</td>
+                        </div>
+                    </tr>
+                    <tr>
                         <div class="password">
                             <td>{{ form.password.label() }}</td>
                             <td>{{ form.password() }}</td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="password_confirm">
+                            <td>{{ form.password_confirm.label() }}</td>
+                            <td>{{ form.password_confirm() }}</td>
                         </div>
                     </tr>
                     <tr>
@@ -26,7 +38,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <p>Ikke registreret? Opret konto <a href="{{ url_for('register') }}">Her</a></p>
+                            <p>Allerede registreret? Log Ind <a href="{{ url_for('login') }}">Her</a></p>
                         </td>
                     </tr>
                 </tbody>

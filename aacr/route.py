@@ -1,6 +1,7 @@
 from turtle import title
-from flask import render_template
+from flask import render_template, url_for
 from aacr import app
+from aacr.forms import RegistrationForm,LoginForm
 
 @app.route("/")
 def index():
@@ -17,4 +18,10 @@ def routes():
 
 @app.route("/login")
 def login():
-    return render_template("login.html", title="Login")
+    form = LoginForm()
+    return render_template("login.html", title="Login", form=form)
+
+@app.route("/register")
+def register():
+    form = RegistrationForm()
+    return render_template("register.html", title="Registrer", form=form)

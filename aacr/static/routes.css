@@ -147,10 +147,11 @@ body {
   }
 }
 
-main{
-    display: flex;
-    position: absolute;
+.navbar2 {
+  margin: top 2em;
 }
 
-
-
+main {
+  display: flex;
+  position: absolute;
+}
