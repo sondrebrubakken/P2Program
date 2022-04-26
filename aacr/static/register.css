@@ -20,4 +20,14 @@ table{
     -webkit-box-shadow: 0px 0px 5px 10px rgba(159,159,237,0.5);
     -moz-box-shadow: 0px 0px 5px 10px rgba(159,159,237,0.5);
     box-shadow: 0px 0px 5px 10px rgba(159,159,237,0.5);
+    width: 400px;
+}
+
+#email, #password_confirm{
+    width:200px;
+    height: 25px;
+}
+
+.second_column{
+    float: right;
 }
