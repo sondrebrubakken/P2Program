@@ -8,4 +8,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///projekt.db'
 db = SQLAlchemy(app)
 
 
+
+
+
+
 from aacr import route

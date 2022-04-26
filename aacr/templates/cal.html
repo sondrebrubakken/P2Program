@@ -1,6 +1,33 @@
 {% extends 'index.html'%}
 {% block content %}
-<div class="calendar">
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var calendarEl = document.getElementById("calendar");
 
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: "dayGridMonth,timeGridWeek,timeGridDay",
+        center: "title",
+        right: "custom2",
+      },
+      footerToolbar: {
+        left: "",
+        center: "",
+        right: "prev,next",
+      },
+      customButtons: {
+        custom2: {
+          text: "Opret Event",
+          click: function () {
+            alert("clicked custom button 2!");
+          },
+        },
+      },
+    });
+
+    calendar.render();
+  });
+</script>
+<div id="calendar">
 </div>
 {% endblock content %}

@@ -12,8 +12,7 @@ td{
     padding: 10px;
 }
 
-table{
-    border: 1px solid rgb(110, 110, 110);
+.reg_form table{
     padding: 8px;
     border-radius: 15px;
     background-color: #736CED;

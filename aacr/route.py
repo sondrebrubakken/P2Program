@@ -1,7 +1,20 @@
+from crypt import methods
 from turtle import title
-from flask import render_template, url_for
 from aacr import app
+from aacr import db
+from flask import render_template, request, url_for
 from aacr.forms import RegistrationForm,LoginForm
+
+
+events = [
+    {
+        'title' : 'Træning',
+        'start' : '2022-04-26',
+        'end' : '2022-04-26'
+    }
+]
+
+
 
 @app.route("/")
 def index():
@@ -10,11 +23,11 @@ def index():
 
 @app.route("/cal")
 def cal():
-    return render_template("cal.html", title="Kalender")
+    return render_template("cal.html", title="Kalender", events=events)
 
-@app.route("/routes")
-def routes():
-    return render_template("routes.html", title="Ruter")
+@app.route("/ruter")
+def ruter():
+    return render_template("ruter.html", title="Ruter")
 
 @app.route("/login")
 def login():
@@ -25,3 +38,20 @@ def login():
 def register():
     form = RegistrationForm()
     return render_template("register.html", title="Registrer", form=form)
+
+@app.route('/add_event', methods=["GET", "POST"])
+def add_event():
+    if request.method == "POST":
+        title = request.form['title']
+        start = request.form['start']
+        end = request.form['end']
+
+        if end == '':
+            end=start
+        events.append({
+            'title' : title,
+            'start' : start,
+            'end' : end
+        },
+        )
+    return render_template('add_event.html')
