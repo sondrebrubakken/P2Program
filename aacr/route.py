@@ -1,4 +1,3 @@
-from crypt import methods
 from turtle import title
 from aacr import app
 from aacr import db
