@@ -1,9 +1,10 @@
 from turtle import title
 from aacr import app
 from aacr import db
-from flask import render_template, request, url_for,redirect
+from flask import render_template, request, url_for,redirect, flash
 from aacr.forms import RegistrationForm,LoginForm,AddEventForm,RuteForm, Rute
-from aacr.model import NyEvent
+from aacr.model import NyEvent, User
+from flask_login import login_user, current_user
 
 
 events = [
@@ -34,9 +35,17 @@ def login():
     form = LoginForm()
     return render_template("login.html", title="Login", form=form)
 
-@app.route("/register")
+@app.route("/register", methods=['POST', 'GET'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data, password=form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash("Konto Oprettet", 'success')
+        return redirect(url_for('login'))
     return render_template("register.html", title="Registrer", form=form)
 
 @app.route('/add_event', methods=["GET", "POST"])

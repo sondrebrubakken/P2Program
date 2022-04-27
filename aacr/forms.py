@@ -2,7 +2,7 @@ from tokenize import String
 from unicodedata import name
 from flask import Flask
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, PasswordField, SubmitField, BooleanField, DateField, TextAreaField
+from wtforms import StringField, SelectField, PasswordField, SubmitField, BooleanField, DateField, TextAreaField, ValidationError
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms_components import TimeField
@@ -17,6 +17,15 @@ class RegistrationForm(FlaskForm):
     password_confirm = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Opret Konto')
 
+    def validate_user(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user:
+            raise ValidationError("Brugernavn allerede i brug")
+            
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user:
+            raise ValidationError("Brugernavn allerede i brug")
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=3,max=30)], render_kw={'placeholder':'Indtast brugernavn her...'})
