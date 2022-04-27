@@ -24,19 +24,21 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
     submit = SubmitField('Log Ind')
 
-def GetRute():
-    return Rute.query
-
-class AddEvent(FlaskForm):
-    title = StringField('Titel', validators=[DataRequired(), Length(min=3,max=30)])
-    start = DateField('Dato', validators=[DataRequired()])
-    time_start = TimeField('Start Tidpunkt', validators=[DataRequired()])
-    time_end = TimeField('Slut Tidpunkt', validators=[DataRequired()])
-    rute = QuerySelectField('Vælg en rute', query_factory=GetRute, allow_blank=True, get_label=name)
-    desc = TextAreaField('Beskrivelse', validators=[DataRequired(), Length(min=3,max=300)])
-    submit = SubmitField('Tilføj Event')
-
 class RuteForm(FlaskForm):
     name = StringField('Rute Navn', validators=[DataRequired()])
     rute = StringField('Frame Link', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+
+def GetRute():
+    return Rute.query
+
+class AddEventForm(FlaskForm):
+    title = StringField('Titel', validators=[DataRequired(), Length(min=3,max=30)])
+    start = DateField('Dato', validators=[DataRequired()])
+    time_start = TimeField('Start Tidpunkt', validators=[DataRequired()])
+    time_end = TimeField('Slut Tidpunkt', validators=[DataRequired()])
+    rute = QuerySelectField('Vælg en rute', query_factory=GetRute, allow_blank=True, get_label='name')
+    desc = TextAreaField('Beskrivelse', validators=[DataRequired(), Length(min=3,max=300)])
+    submit = SubmitField('Tilføj Event')
+
