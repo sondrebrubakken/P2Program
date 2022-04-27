@@ -3,6 +3,7 @@
 {% block content %}
 <div class="event_form">
     <form action="/add_event" method="post">
+        {{ form.hidden_tag() }}
         <table>
             <tbody>
                 <tr>
@@ -31,8 +32,8 @@
                 </tr>
                 <tr>
                     <div class="route">
-                        <td>{{ form.route.label() }}</td>
-                        <td>{{ form.route }}</td>
+                        <td>{{ form.rute.label() }}</td>
+                        <td>{{ form.rute }}</td>
                     </div>
                 </tr>
                 <tr>

@@ -19,6 +19,19 @@ class Rute(db.Model):
     name = db.Column(db.String(255), nullable = False)
     rute = db.Column(db.String(255), nullable = False)
 
+
+
     def __repr__(self):
         return '{}'.format(self.rute)
     
+
+
+
+class NyEvent(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255), nullable = False)
+    start = db.Column(db.Date)
+    time_start = db.Column(db.DateTime, default=datetime.utcnow)
+    time_end = db.Column(db.DateTime,default=datetime.utcnow)
+    rute = db.Column(db.String(255), nullable = False)
+    desc = db.Column(db.String(255), nullable = False)
