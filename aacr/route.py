@@ -52,7 +52,7 @@ def register():
 def add_event():
     form = AddEventForm()
     if form.validate_on_submit():
-        event = NyEvent(title=form.title.data, start=form.start.data, rute=form.rute.data, desc=form.desc.data)
+        event = NyEvent(title=form.title.data, start=form.start.data, time_start=form.time_start.data, time_end=form.time_end.data, rute=form.rute.data, desc=form.desc.data)
         db.session.add(event)
         db.session.commit()
         return redirect(url_for('cal'))

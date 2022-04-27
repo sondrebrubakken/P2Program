@@ -45,8 +45,8 @@ def GetRute():
 class AddEventForm(FlaskForm):
     title = StringField('Titel', validators=[DataRequired(), Length(min=3,max=30)])
     start = DateField('Dato', validators=[DataRequired()])
-    time_start = TimeField('Start Tidpunkt', validators=[DataRequired()])
-    time_end = TimeField('Slut Tidpunkt', validators=[DataRequired()])
+    time_start = TimeField('Start Tidpunkt', format='%H:%M', validators=[DataRequired()])
+    time_end = TimeField('Slut Tidpunkt', format='%H:%M', validators=[DataRequired()])
     rute = QuerySelectField('Vælg en rute', query_factory=GetRute, allow_blank=True, get_label='name')
     desc = TextAreaField('Beskrivelse', validators=[DataRequired(), Length(min=3,max=300)])
     submit = SubmitField('Tilføj Event')
