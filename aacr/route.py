@@ -2,7 +2,7 @@ from turtle import title
 from aacr import app
 from aacr import db
 from flask import render_template, request, url_for
-from aacr.forms import RegistrationForm,LoginForm
+from aacr.forms import RegistrationForm,LoginForm,AddEvent
 
 
 events = [
@@ -40,6 +40,7 @@ def register():
 
 @app.route('/add_event', methods=["GET", "POST"])
 def add_event():
+    form = AddEvent()
     if request.method == "POST":
         title = request.form['title']
         start = request.form['start']
@@ -53,4 +54,4 @@ def add_event():
             'end' : end
         },
         )
-    return render_template('add_event.html')
+    return render_template('add_event.html', title='Add Event', form=form)

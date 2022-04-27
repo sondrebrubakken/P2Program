@@ -1,21 +1,52 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<div class="reg_form">
+<div class="event_form">
     <form action="/add_event" method="post">
         <table>
             <tbody>
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <div class="title">
+                        <td>{{ form.title.label() }}</td>
+                        <td>{{ form.title }}</td>
+                    </div>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <div class="start">
+                        <td>{{ form.start.label() }}</td>
+                        <td>{{ form.start }}</td>
+                    </div>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <div class="time_start">
+                        <td>{{ form.time_start.label }}</td>
+                        <td>{{ form.time_start }}</td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="time_end">
+                        <td>{{ form.time_end.label }}</td>
+                        <td>{{ form.time_end }}</td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="route">
+                        <td>{{ form.route.label() }}</td>
+                        <td>{{ form.route }}</td>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="desc">
+                        <td>{{ form.desc.label() }}</td>
+                        <td>{{ form.desc }}</td>
+                    </div>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="submit">
+                            {{ form.submit() }}
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

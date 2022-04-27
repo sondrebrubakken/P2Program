@@ -5,6 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, PasswordField, SubmitField, BooleanField, DateField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from wtforms_sqlalchemy.fields import QuerySelectField
+from wtforms_components import TimeField
 from aacr.model import User, Rute
 
 
@@ -28,9 +29,11 @@ def GetRute():
 
 
 class AddEvent(FlaskForm):
-    title = StringField('Title', validators=[DataRequired(), Length(min=3,max=30)])
-    start = DateField('Start', validators=[DataRequired()])
+    title = StringField('Titel', validators=[DataRequired(), Length(min=3,max=30)])
+    start = DateField('Dato', validators=[DataRequired()])
+    time_start = TimeField('Start Tidpunkt', validators=[DataRequired()])
+    time_end = TimeField('Slut Tidpunkt', validators=[DataRequired()])
     route = QuerySelectField('Vælg en rute', query_factory=GetRute, allow_blank=True, get_label=name)
-    end = DateField('End', validators=[DataRequired()])
-    desc = StringField('Description', validators=[DataRequired(), Length(min=3,max=300)])
+    desc = TextAreaField('Beskrivelse', validators=[DataRequired(), Length(min=3,max=300)])
+    submit = SubmitField('Tilføj Event')
 
