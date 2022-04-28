@@ -24,7 +24,8 @@ def index():
 
 @app.route("/cal")
 def cal():
-    return render_template("cal.html", title="Kalender", events=events)
+    site_events = NyEvent.query.all()
+    return render_template("cal.html", title="Kalender", site_events=site_events)
 
 @app.route("/ruter")
 def ruter():

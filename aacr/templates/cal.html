@@ -8,6 +8,16 @@
     var calendarEl = document.getElementById("calendar");
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
+      nextDayThreshold: '00:00:00',
+      events : [
+        {% for site_event in site_events %}
+          {
+            title : '{{ site_event.title }}',
+            start : '{{ site_event.start }}T{{ site_event.time_start }}',
+            end : '{{ site_event.end }}T{{ site_event.time_end }}',
+          },
+        {% endfor %}
+      ],
       aspectRatio : 2.4,
       headerToolbar: {
         left: "dayGridMonth,timeGridWeek,timeGridDay",
