@@ -23,20 +23,12 @@ td{
     width: 400px;
 }
 
-#email, #password_confirm{
-    width:200px;
-    height: 25px;
-}
+
 
 .second_column{
     float: right;
 }
 
-.event_form{
-    width: 350px;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 .event_form table{
     padding: 8px;

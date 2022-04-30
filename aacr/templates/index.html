@@ -30,10 +30,23 @@
             <li><a href="#">Nyheder</a></li>
             <li><a href="/ruter">Ruter</a></li>
             <li><a href="/cal">Kalender</a></li>
+            {% if current_user.is_authenticated %}
+            <li><a href="{{url_for('logout')}}">Log ud</a></li>
+            {% else %}
             <li><a href="/login">Login</a></li>
+            {% endif %}
         </ul>
     </nav>
     <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
     {% block content %}
     {% endblock %}
     </div>

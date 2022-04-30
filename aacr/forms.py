@@ -30,7 +30,7 @@ class RegistrationForm(FlaskForm):
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=3,max=30)], render_kw={'placeholder':'Indtast brugernavn her...'})
     password = PasswordField('Password', validators=[DataRequired()])
-    remember = BooleanField('Remember Me')
+    husk_mig = BooleanField('Husk Mig!')
     submit = SubmitField('Log Ind')
 
 class RuteForm(FlaskForm):
