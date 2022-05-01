@@ -30,6 +30,9 @@
             <li><a href="#">Nyheder</a></li>
             <li><a href="/ruter">Ruter</a></li>
             <li><a href="/cal">Kalender</a></li>
+            {% if current_user.is_admin %}
+            <li><a href="/admin">Admin</a></li>
+            {% endif %}
             {% if current_user.is_authenticated %}
             <li><a href="{{url_for('logout')}}">Log ud</a></li>
             {% else %}

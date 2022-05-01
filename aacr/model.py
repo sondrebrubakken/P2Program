@@ -1,7 +1,9 @@
+from flask import redirect, abort
 from flask_sqlalchemy import sqlalchemy
 from datetime import datetime
-from aacr import db, login_man
-from flask_login import UserMixin
+from aacr import db, login_man, admin
+from flask_login import UserMixin, current_user
+from flask_admin.contrib.sqla import ModelView
 import pymysql
 
 
@@ -14,9 +16,30 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(25), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
+    is_admin = db.Column(db.Boolean, default=False)
+    is_trainer = db.Column(db.Boolean, default=False)
+    is_user = db.Column(db.Boolean, default=True)
 
     def __repr__(self):
         return f"User('{self.username}')"
+
+
+class AdminControl(ModelView):
+    def is_accessible(self):
+        if current_user.is_admin == True:
+            return current_user.is_authenticated
+        else:
+            return abort(404)
+
+class TrainerControl(ModelView):
+    def is_accessible(self):
+        if current_user.is_trainer == True:
+            return current_user.is_authenticated
+        else:
+            return abort(404)
+
+
+
 
 
 class Rute(db.Model):
@@ -40,3 +63,9 @@ class NyEvent(db.Model):
     time_end = db.Column(db.Time,default=datetime.utcnow)
     rute = db.Column(db.String(255), nullable = False)
     desc = db.Column(db.String(255), nullable = False)
+
+
+
+admin.add_view(AdminControl(User, db.session))
+admin.add_view(AdminControl(NyEvent, db.session))
+admin.add_view(AdminControl(Rute, db.session))
