@@ -55,3 +55,7 @@ li a:hover {
 tr td p{
   color: white;
 }
+
+.eventform{
+  margin: auto;
+}
