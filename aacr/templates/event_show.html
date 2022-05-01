@@ -1,10 +1,29 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <h2>{{ post.title }}</h2>
-    <h3>{{ post.start }}</h3>
-    <h3>{{ post.time_start }}</h3>
-    <h3>{{ post.time_end }}</h3>
-    <h4>{{ post.rute | safe }}</h4>
-    <p>{{ post.desc }}</p>
+<div class="show_event_container">
+    <div class="rute">{{ post.rute | safe }}</div>
+    <div class="info">
+        <table>
+            <tr>
+                <td>{{ post.title }}</td>
+            </tr>
+            <tr>
+                <td>Dato:</td>
+                <td>{{ post.start }}</td>
+            </tr>
+            <tr>
+                <td>Start Tidspunkt</td>
+                <td>Slut Tidspunkt</td>
+            </tr>
+            <tr>
+                <td>{{ post.time_start }}</td>
+                <td>{{ post.time_end }}</td>
+            </tr>
+            <tr>
+                <td>{{ post.desc }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
 {% endblock %}

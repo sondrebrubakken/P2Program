@@ -1,9 +1,10 @@
-from flask import redirect, abort
+from flask import redirect, abort, url_for
 from flask_sqlalchemy import sqlalchemy
 from datetime import datetime
 from aacr import db, login_man, admin
 from flask_login import UserMixin, current_user
 from flask_admin.contrib.sqla import ModelView
+from flask_admin.menu import MenuLink
 import pymysql
 
 
@@ -66,8 +67,11 @@ class NyEvent(db.Model):
     desc = db.Column(db.String(255), nullable = False)
     user_id= db.Column(db.Integer,db.ForeignKey("user.id"),nullable=False)
 
-
+class MainIndexLink(MenuLink):
+    def get_url(self):
+        return url_for("index")
 
 admin.add_view(AdminControl(User, db.session))
 admin.add_view(AdminControl(NyEvent, db.session))
 admin.add_view(AdminControl(Rute, db.session))
+admin.add_link(MainIndexLink(name="Tilbage til forsiden"))

@@ -154,3 +154,21 @@ body {
 main {
   display: flex;
 }
+
+.show_event_container{
+  display: flex;
+  justify-content: center;
+}
+
+.rute{
+  float: left;
+  width: 465px;
+  margin: 0;
+}
+.info{
+  width: fit-content;
+  float:left;
+  border: 2px solid black;
+  border-radius: 15px;
+  height: fit-content;
+}

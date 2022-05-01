@@ -7,15 +7,6 @@ from aacr.model import NyEvent, User
 from flask_login import login_user, current_user, logout_user
 
 
-events = [
-    {
-        'title' : 'Træning',
-        'start' : '2022-04-26',
-        'end' : '2022-04-26'
-    }
-]
-
-
 
 @app.route("/")
 def index():
@@ -87,7 +78,7 @@ def nyrute():
         return redirect(url_for('nyrute'))
     return render_template('nyrute.html', title="Nye ruter", form=form, ruter=ruter)
 
-@app.route("/event/<int:event_id>")
-def event(event_id):
-    post = NyEvent.query.get_or_404(event_id)
-    return render_template('event.html', post=post)
+@app.route('/showevent/<int:event_id>')
+def show_event(event_id):
+    show_event = NyEvent.query.get(event_id)
+    return render_template('event_show.html', post=show_event)

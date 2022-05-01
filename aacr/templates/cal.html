@@ -15,7 +15,7 @@
             title : '{{ site_event.title }}',
             start : '{{ site_event.start }}T{{ site_event.time_start }}',
             end : '{{ site_event.end }}T{{ site_event.time_end }}',
-            url: "/{{ url_for('event') }}"
+            url: '/showevent/{{ site_event.id }}'
           },
         {% endfor %}
       ],
