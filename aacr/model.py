@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     is_admin = db.Column(db.Boolean, default=False)
     is_trainer = db.Column(db.Boolean, default=False)
     is_user = db.Column(db.Boolean, default=True)
+    nyevent = db.relationship('NyEvent', backref='bruger', lazy=True)
 
     def __repr__(self):
         return f"User('{self.username}')"
@@ -63,6 +64,7 @@ class NyEvent(db.Model):
     time_end = db.Column(db.Time,default=datetime.utcnow)
     rute = db.Column(db.String(255), nullable = False)
     desc = db.Column(db.String(255), nullable = False)
+    user_id= db.Column(db.Integer,db.ForeignKey("user.id"),nullable=False)
 
 
 

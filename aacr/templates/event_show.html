@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h2>{{ post.title }}</h2>
+    <h3>{{ post.start }}</h3>
+    <h3>{{ post.time_start }}</h3>
+    <h3>{{ post.time_end }}</h3>
+    <h4>{{ post.rute | safe }}</h4>
+    <p>{{ post.desc }}</p>
+{% endblock %}
