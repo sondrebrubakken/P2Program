@@ -1,3 +1,4 @@
+from email.policy import default
 from tokenize import String
 from unicodedata import name
 from flask import Flask
@@ -25,7 +26,7 @@ class RegistrationForm(FlaskForm):
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
-            raise ValidationError("Brugernavn allerede i brug")
+            raise ValidationError("Email allerede i brug")
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=3,max=30)], render_kw={'placeholder':'Indtast brugernavn her...'})

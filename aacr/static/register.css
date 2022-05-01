@@ -30,24 +30,3 @@ td{
 }
 
 
-.event_form table{
-    padding: 8px;
-    border-radius: 15px;
-    background-color: #736CED;
-    -webkit-box-shadow: 0px 0px 5px 10px rgba(159,159,237,0.5);
-    -moz-box-shadow: 0px 0px 5px 10px rgba(159,159,237,0.5);
-    box-shadow: 0px 0px 5px 10px rgba(159,159,237,0.5);
-    width: 350px;
-
-}
-
-textarea{
-    overflow: auto;
-    width: 170px;
-    max-width: 170px;
-    min-width: 170px;
-}
-
-#title{
-    width: 170px;
-}

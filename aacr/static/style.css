@@ -59,3 +59,13 @@ tr td p{
 .eventform{
   margin: auto;
 }
+
+
+#add_event_time{
+  display: inline-block;
+}
+
+#add_event_time label{
+  display: block;
+
+}
