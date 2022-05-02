@@ -3,7 +3,7 @@ from tokenize import String
 from unicodedata import name
 from flask import Flask
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, PasswordField, SubmitField, BooleanField, DateField, TextAreaField, ValidationError
+from wtforms import StringField, SelectField, PasswordField, SubmitField, BooleanField, DateField, TextAreaField, ValidationError, FloatField, DecimalField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms_components import TimeField
@@ -30,13 +30,16 @@ class RegistrationForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=3,max=30)], render_kw={'placeholder':'Indtast brugernavn her...'})
-    password = PasswordField('Password', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()], render_kw={'placeholder':'Indtast kodeord her...'})
     husk_mig = BooleanField('Husk Mig!')
     submit = SubmitField('Log Ind')
 
 class RuteForm(FlaskForm):
-    name = StringField('Rute Navn', validators=[DataRequired()])
-    rute = StringField('Frame Link', validators=[DataRequired()])
+    name = StringField('Rute Navn', validators=[DataRequired()], render_kw={'placeholder':'Rutenavn...'})
+    rute = TextAreaField('Frame Link', validators=[DataRequired()], render_kw={'placeholder':'iFrame embed link...'})
+    dist = FloatField('Distance(km)', validators=[DataRequired()], render_kw={'placeholder':'Distance...'})
+    land = BooleanField('Landevejsrute')
+    byen = BooleanField('Byrute')
     submit = SubmitField('Submit')
 
 

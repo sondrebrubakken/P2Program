@@ -48,6 +48,9 @@ class Rute(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable = False)
     rute = db.Column(db.String(255), nullable = False)
+#    dist = db.Column(db.Float, nullable = False)
+    land = db.Column(db.String(255), nullable = True)
+    byen = db.Column(db.String(255), nullable = True)
 
 
 

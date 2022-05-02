@@ -18,8 +18,9 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 3.7em;
-  width: 100%;
+  width: 1000px;
   border-bottom: 1px solid #d1d1d1;
+  margin: 0 auto;
 
   &-logo {
     margin-left: 25px;
@@ -63,7 +64,7 @@ body {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 3.7em;
 }
 

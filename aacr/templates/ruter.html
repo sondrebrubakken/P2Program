@@ -10,7 +10,7 @@
 
 <div class="header">
     <h1>Oversigt over ruter</h1>
-    {% if current_user.is_authenticated %}
+    {% if current_user.is_admin or current_user.is_trainer %}
     <a href="{{ url_for('nyrute') }}" class="btn btn-outline-dark">Opret Rute</a>
     {% endif %}
 </div>

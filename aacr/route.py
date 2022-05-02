@@ -58,25 +58,26 @@ def logout():
 
 @app.route('/add_event', methods=["GET", "POST"])
 def add_event():
-    form = AddEventForm()
-    if form.validate_on_submit():
-        event = NyEvent(title=form.title.data, start=form.start.data, time_start=form.time_start.data, time_end=form.time_end.data, rute=form.rute.data, desc=form.desc.data, bruger=current_user)
-        db.session.add(event)
-        db.session.commit()
-        return redirect(url_for('cal'))
+    if current_user.is_admin or current_user.is_trainer:
+        form = AddEventForm()
+        if form.validate_on_submit():
+            event = NyEvent(title=form.title.data, start=form.start.data, time_start=form.time_start.data, time_end=form.time_end.data, rute=form.rute.data, desc=form.desc.data, bruger=current_user)
+            db.session.add(event)
+            db.session.commit()
+            return redirect(url_for('cal'))
     return render_template('add_event.html', title='Add Event', form=form)
 
 
 @app.route('/nyrute', methods=['POST', 'GET'])
 def nyrute():
-    form = RuteForm()
-    ruter = Rute.query.order_by(Rute.id)
-    if form.validate_on_submit():
-        ruter = Rute(rute=form.rute.data, name=form.name.data)
-        db.session.add(ruter)
-        db.session.commit()
-        return redirect(url_for('nyrute'))
-    return render_template('nyrute.html', title="Nye ruter", form=form, ruter=ruter)
+    if current_user.is_admin or current_user.is_trainer:
+        form = RuteForm()
+        if form.validate_on_submit():
+            ruter = Rute(rute=form.rute.data, name=form.name.data, land=form.land.data, byen=form.byen.data)
+            db.session.add(ruter)
+            db.session.commit()
+            return redirect(url_for('nyrute'))
+    return render_template('nyrute.html', title="Nye ruter", form=form)
 
 @app.route('/showevent/<int:event_id>')
 def show_event(event_id):
