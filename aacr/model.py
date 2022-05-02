@@ -1,3 +1,5 @@
+from multiprocessing.dummy import Value
+from tkinter import Scale
 from flask import redirect, abort, url_for
 from flask_sqlalchemy import sqlalchemy
 from datetime import datetime
@@ -48,9 +50,10 @@ class Rute(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable = False)
     rute = db.Column(db.String(255), nullable = False)
-#    dist = db.Column(db.Float, nullable = False)
-    land = db.Column(db.String(255), nullable = True)
-    byen = db.Column(db.String(255), nullable = True)
+    dist = db.Column(db.Numeric(precision=8, scale=1), nullable = False)
+    desc = db.Column(db.String(1000), nullable = False)
+    land = db.Column(db.Boolean, default=False)
+    byen = db.Column(db.Boolean, default=False)
 
 
 

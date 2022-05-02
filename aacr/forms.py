@@ -7,6 +7,7 @@ from wtforms import StringField, SelectField, PasswordField, SubmitField, Boolea
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms_components import TimeField
+from werkzeug.datastructures import MultiDict
 from aacr.model import User, Rute
 
 
@@ -37,9 +38,10 @@ class LoginForm(FlaskForm):
 class RuteForm(FlaskForm):
     name = StringField('Rute Navn', validators=[DataRequired()], render_kw={'placeholder':'Rutenavn...'})
     rute = TextAreaField('Frame Link', validators=[DataRequired()], render_kw={'placeholder':'iFrame embed link...'})
-    dist = FloatField('Distance(km)', validators=[DataRequired()], render_kw={'placeholder':'Distance...'})
-    land = BooleanField('Landevejsrute')
-    byen = BooleanField('Byrute')
+    dist = DecimalField('Distance(km)', validators=[DataRequired()], render_kw={'placeholder':'Distance...'})
+    desc = TextAreaField('Beskrivelse', validators=[DataRequired()])
+    land = BooleanField('Landevejsrute', render_kw={'value' : 1}, default=False)
+    byen = BooleanField('Byrute', render_kw={'value' : 1}, default=False)
     submit = SubmitField('Submit')
 
 

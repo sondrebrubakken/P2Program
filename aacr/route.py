@@ -20,7 +20,8 @@ def cal():
 
 @app.route("/ruter")
 def ruter():
-    return render_template("ruter.html", title="Ruter")
+    ruter = Rute.query.all()
+    return render_template("ruter.html", title="Ruter", ruter=ruter)
 
 @app.route("/login", methods=['POST','GET'])
 def login():
@@ -73,7 +74,7 @@ def nyrute():
     if current_user.is_admin or current_user.is_trainer:
         form = RuteForm()
         if form.validate_on_submit():
-            ruter = Rute(rute=form.rute.data, name=form.name.data, land=form.land.data, byen=form.byen.data)
+            ruter = Rute(rute=form.rute.data, name=form.name.data, desc=form.desc.data, dist=form.dist.data,land=form.land.data, byen=form.byen.data)
             db.session.add(ruter)
             db.session.commit()
             return redirect(url_for('nyrute'))
