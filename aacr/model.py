@@ -51,7 +51,7 @@ class Rute(db.Model):
     name = db.Column(db.String(255), nullable = False)
     rute = db.Column(db.String(255), nullable = False)
     dist = db.Column(db.Numeric(precision=8, scale=1), nullable = False)
-    desc = db.Column(db.String(1000), nullable = False)
+    desc = db.Column(db.String(400), nullable = False)
     land = db.Column(db.Boolean, default=False)
     byen = db.Column(db.Boolean, default=False)
 

@@ -39,7 +39,7 @@ class RuteForm(FlaskForm):
     name = StringField('Rute Navn', validators=[DataRequired()], render_kw={'placeholder':'Rutenavn...'})
     rute = TextAreaField('Frame Link', validators=[DataRequired()], render_kw={'placeholder':'iFrame embed link...'})
     dist = DecimalField('Distance(km)', validators=[DataRequired()], render_kw={'placeholder':'Distance...'})
-    desc = TextAreaField('Beskrivelse', validators=[DataRequired()])
+    desc = TextAreaField('Beskrivelse', validators=[DataRequired(), Length(min=3,max=400)])
     land = BooleanField('Landevejsrute', render_kw={'value' : 1}, default=False)
     byen = BooleanField('Byrute', render_kw={'value' : 1}, default=False)
     submit = SubmitField('Submit')
