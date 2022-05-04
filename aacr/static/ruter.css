@@ -9,7 +9,7 @@
 }
 
 body {
-  background: #fff;
+  background: rgb(240, 240, 240) !important;
   font-family: "DM Sans", sans-serif;
 }
 
@@ -81,18 +81,18 @@ body {
 }
 
 .rute_info_1{
-  border-left: 2px solid black;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
-  width: 443px;
+  border-left: 2px solid rgb(200, 200, 200);
+  border-right: 2px solid rgb(200, 200, 200);
+  border-bottom: 2px solid rgb(200, 200, 200);
+  width: 445px;
   overflow-wrap: break-word;
   margin-top: -5em;
   padding-top: 20px;
-  padding-left:15px;
-  padding-right: 15px;
+  padding-left:16px;
+  padding-right: 16px;
   padding-bottom:1px;
   height: 230px;
-  
+  background-color: #fff;
   z-index: -10;
   border-radius:15px;
 }
@@ -125,4 +125,21 @@ main {
   border: 2px solid black;
   border-radius: 15px;
   height: fit-content;
+}
+
+.rute_titel{
+  border-left: 2px solid rgb(200, 200, 200);
+  border-right: 2px solid rgb(200, 200, 200);
+  border-top: 2px solid rgb(200, 200, 200);
+  width:445px;
+  text-align: center;
+  border-radius:15px;
+  padding-top: 10px;
+  padding-bottom: 2em;
+  margin-bottom: -1.5em;
+  background-color: #fff;
+}
+
+#submit{
+  color: white;
 }
