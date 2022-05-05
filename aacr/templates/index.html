@@ -1,57 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/style.css">
-    <link rel="stylesheet" href="../static/ruter.css">
-    <link rel="stylesheet" href="../static/register.css">
-    <link rel="stylesheet" href="../static/login.css">
-    
-    
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="stylesheet" href="../static/ruter.css" />
+    <link rel="stylesheet" href="../static/register.css" />
+    <link rel="stylesheet" href="../static/login.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
 
-    {% block bootstrap %}
-    
-    {% endblock  %}
-</head>
-<body>
+    {% block bootstrap %} {% endblock %}
+  </head>
+  <body>
     <nav>
-        <ul>
-            <li><a href="#">Klubben</a></li>
-            <li><a href="#">Rytterinfo</a></li>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">Sponsor</a></li>
-            <li><a href="#">Medlem</a></li>
-            <li><a href="#">Nyheder</a></li>
-            <li><a href="/ruter">Ruter</a></li>
-            <li><a href="/cal">Kalender</a></li>
-            {% if current_user.is_admin %}
-            <li><a href="/admin">Admin</a></li>
-            {% endif %}
-            {% if current_user.is_authenticated %}
-            <li><a href="{{url_for('logout')}}">Log ud</a></li>
-            {% else %}
-            <li><a href="/login">Login</a></li>
-            {% endif %}
-        </ul>
+      <ul>
+        <li><a href="#">Klubben</a></li>
+        <li><a href="#">Rytterinfo</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Sponsor</a></li>
+        <li><a href="#">Medlem</a></li>
+        <li><a href="#">Nyheder</a></li>
+        <li><a href="/ruter">Ruter</a></li>
+        <li><a href="/cal">Kalender</a></li>
+        {% if current_user.is_admin %}
+        <li><a href="/admin">Admin</a></li>
+        {% endif %} {% if current_user.is_authenticated %}
+        <li><a href="{{url_for('logout')}}">Log ud</a></li>
+        {% else %}
+        <li><a href="/login">Login</a></li>
+        {% endif %}
+      </ul>
     </nav>
     <div class="container">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">
-              {{ message }}
-            </div>
-          {% endfor %}
-        {% endif %}
-      {% endwith %}
-    {% block content %}
-    {% endblock %}
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %} {% block content %} {% endblock %}
     </div>
-</body>
+  </body>
 </html>
