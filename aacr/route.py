@@ -1,10 +1,14 @@
+from operator import and_
+from os import abort
 from turtle import title
 from aacr import app, bcrypt
 from aacr import db
-from flask import render_template, request, url_for, redirect, flash
-from aacr.forms import RegistrationForm, LoginForm, AddEventForm, RuteForm, Rute
+from flask import render_template, request, url_for, redirect, flash, abort
+from aacr.forms import RegistrationForm, LoginForm, AddEventForm, RuteForm, Rute, RuteFilter
 from aacr.model import NyEvent, User
 from flask_login import login_user, current_user, logout_user
+from sqlalchemy import and_
+import sqlalchemy
 
 
 @app.route("/")
@@ -18,10 +22,37 @@ def cal():
     return render_template("cal.html", title="Kalender", site_events=site_events)
 
 
-@app.route("/ruter")
+@app.route("/ruter", methods=['POST', 'GET'])
 def ruter():
     ruter = Rute.query.all()
-    return render_template("ruter.html", title="Ruter", ruter=ruter)
+    form = RuteFilter(choice="null", distance="null")
+    test = True
+    if form.validate_on_submit():
+        if form.choice.data == "byen" and form.distance.data == "low":
+            ruter = Rute.query.filter(
+                and_(Rute.byen == 1, Rute.dist <= 50)).all()
+        elif form.choice.data == "byen" and form.distance.data == "high":
+            ruter = Rute.query.filter(
+                and_(Rute.byen == 1, Rute.dist >= 50)).all()
+        elif form.choice.data == "land" and form.distance.data == "low":
+            ruter = Rute.query.filter(
+                and_(Rute.land == 1, Rute.dist <= 50)).all()
+        elif form.choice.data == "land" and form.distance.data == "high":
+            ruter = Rute.query.filter(
+                and_(Rute.land == 1, Rute.dist >= 50)).all()
+        elif form.choice.data == "byen":
+            ruter = Rute.query.filter(Rute.byen == 1).all()
+        elif form.choice.data == "land":
+            ruter = Rute.query.filter(Rute.land == 1).all()
+        elif form.distance.data == "low":
+            ruter = Rute.query.filter(Rute.dist <= 50).all()
+        elif form.distance.data == "high":
+            ruter = Rute.query.filter(Rute.dist >= 50).all()
+        else:
+            flash('Ingen ruter tilgængelig fra dette filter', 'danger')
+        
+        return render_template("ruter.html", form=form, ruter=ruter)
+    return render_template("ruter.html", title="Ruter", form=form, ruter=ruter)
 
 
 @app.route("/login", methods=['POST', 'GET'])
@@ -40,7 +71,7 @@ def login():
         user_info = User.query.filter_by(username=form.username.data).first()
         # Linje 42-43 bliver udført kun hvis user_info giver et brugernavn, og Bcrypts password hash samsvarer med koden brugeren har skrevet ind.
         if user_info and bcrypt.check_password_hash(user_info.password, form.password.data):
-            #Funktion 
+            # Funktion
             login_user(user_info)
             return redirect(url_for('index'))
         flash('Fejl med brugernavn eller kode', 'danger')
@@ -94,7 +125,7 @@ def add_event():
             db.session.add(event)
             db.session.commit()
             return redirect(url_for('cal'))
-    return render_template('add_event.html', title='Add Event', form=form)
+    return render_template('add_event.html', title='Add Event', form=form, legend="Opret Event")
 
 
 @app.route('/nyrute', methods=['POST', 'GET'])
@@ -112,5 +143,31 @@ def nyrute():
 
 @app.route('/showevent/<int:event_id>')
 def show_event(event_id):
-    show_event = NyEvent.query.get(event_id)
+    show_event = NyEvent.query.get_or_404(event_id)
     return render_template('event_show.html', post=show_event)
+
+
+@app.route('/showevent/<int:event_id>/edit', methods=['GET', 'POST'])
+def edit_event(event_id):
+    event = NyEvent.query.get_or_404(event_id)
+    if event.bruger != current_user:
+        abort(404)
+    form = AddEventForm()
+    if form.validate_on_submit():
+        event.title = form.title.data
+        event.start = form.start.data
+        event.time_start = form.time_start.data
+        event.time_end = form.time_end.data
+        event.rute = form.rute.data
+        event.desc = form.desc.data
+        db.session.commit()
+        flash('Begivenhed Opdateret', 'success')
+        return redirect(url_for('show_event', event_id=event_id))
+    elif request.method == 'GET':
+        form.title.data = event.title
+        form.start.data = event.start
+        form.time_start.data = event.time_start
+        form.time_end.data = event.time_end
+        form.rute.data = event.rute
+        form.desc.data = event.desc
+    return render_template('add_event.html', title='Edit Event', form=form, legend="Rediger Event")

@@ -1,71 +1,278 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 * {
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 body {
   background-color: rgb(240, 240, 240);
-  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
-}
-nav {
-  margin-top: 5em;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 2em;
-}
-
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #565857;
-  border-radius: 15px;
-  border: 2px solid black;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: #8d928f;
+  font-family: "Montserrat";
+  align-items: center;
 }
 
 .container {
-  width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-.submit input{
-  padding: 5px;
-}
-
-
-tr td p{
-  color: white;
-}
-
-.eventform{
+  width: auto;
   margin: auto;
 }
 
+.bg-custom-login {
+  background-color: #1e343a !important;
+}
 
-#add_event_time{
+.submit input {
+  padding: 5px;
+}
+
+#add_event_time {
   display: inline-block;
 }
 
-#add_event_time label{
+#add_event_time label {
   display: block;
+}
 
+header {
+  display: flex;
+  background-color: #1e343a;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  height: 3.5em;
+  align-items: center;
+}
+
+.login-ud {
+  padding: 9px 20px;
+  background-color: rgb(0, 79, 98);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease 0s;
+  margin-right: 30px;
+  text-decoration-style: none;
+  display: flex;
+}
+
+.login-ud a {
+  text-decoration: none;
+  color: white;
+}
+
+.login-ud:hover {
+  background-color: rgba(0, 61, 77, 0.8);
+}
+
+.edit_event_knap {
+  padding: 9px 20px;
+  background-color: rgb(0, 79, 98);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease 0s;
+  margin-right: 30px;
+  text-decoration-style: none;
+  display: flex;
+  max-width: 100%;
+  width: fit-content;
+  vertical-align: bottom;
+}
+
+.edit_event_knap a {
+  text-decoration: none;
+  color: white;
+}
+.edit_event_knap:hover {
+  background-color: rgba(0, 61, 77, 0.8);
+}
+
+.nav-links a {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  padding-top: 15px;
+  display: flex;
+}
+.nav-links li {
+  padding: 0px 20px;
+}
+
+.nav-links li a {
+  font-weight: 500;
+  color: white;
+  text-decoration: none;
+  align-items: center;
+}
+
+nav.navmenu {
+  vertical-align: middle;
+}
+
+.nav-links li a {
+  transition: color 0.4s ease 0s;
+}
+
+.nav-links li a:hover {
+  color: #0088a9;
+}
+
+img .logo {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: 30px;
+}
+.rute-container {
+  font-family: "Montserrat", sans-serif;
+  background-color: #1e343a;
+  display: inline-grid;
+  align-items: center;
+  text-align: center;
+  margin: 15px 5.5em;
+  width: 465px;
+  height: 100%;
+  padding-top: 10px;
+  border-radius: 1em;
+}
+
+.rute_info_1 {
+  display: content;
+  padding-bottom: 10px;
+  align-items: center;
+  border-radius: 10px;
+  margin: 10px;
+  background-color: white;
+}
+
+.rute_info_2 {
+  text-align: left;
+  margin: 10px;
+}
+
+.rute_beskivelse {
+  text-decoration: underline;
+}
+
+iFrame {
+  height: 490px;
+}
+.show_event_container {
+  font-family: "Montserrat", sans-serif;
+  background-color: #1e343a;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 1em;
+  width: 1000px;
+  margin-left: 12em;
+}
+
+.show_event_info {
+  height: 455px;
+  width: 440px;
+  margin-top: 50px;
+  border: 2px solid white;
+  border-radius: 1em;
+  padding: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+.show_event_rute {
+  padding: 25px;
+}
+.show_event_title {
+  text-align: center;
+  font-style: italic;
+}
+.show_event_start_label {
+  font-style: bold;
+}
+.show_event_start {
+  float: right;
+}
+.show_event_time_start {
+  float: right;
+}
+.show_event_time_end {
+  float: right;
+}
+
+.show_event_beskrivelse {
+  margin-top: 5em;
+}
+
+.show_event_desc {
+  margin-top: 10px;
+  height: 107px;
+}
+
+.show_event_content {
+  margin-top: 3em;
+}
+.fc .fc-button {
+  background-color: #1e343a;
+  background-image: none;
+}
+
+.filter-rute {
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  margin-left: 90px;
+  background-color: #1e343a;
+  height: 50px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.filter-rute div {
+  padding-right: 30px;
+  font-size: 16px;
+  color: white;
+  padding-left: 10px;
+}
+
+.search-knp {
+  background-color: rgb(0, 79, 98);
+  border: none;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration-style: none;
+  display: flex;
+  color: white;
+  float: right;
+  margin-right: -20px;
+}
+
+div.search-div {
+  width: 29em;
+}
+.filter-bar {
+  display: flex;
+  height: 50px;
+}
+
+.filter-bar a {
+  float: right;
+}
+
+.opret-rute-div a {
+  height: 50px;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.opret-rute-div {
+  display: flex;
+  justify-content: right;
+  margin-right: 99px;
 }

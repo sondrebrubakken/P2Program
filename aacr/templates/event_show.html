@@ -1,29 +1,34 @@
-{% extends 'index.html' %}
-
-{% block content %}
+{% extends 'index.html' %} {% block content %}
 <div class="show_event_container">
-    <div class="rute">{{ post.rute | safe }}</div>
-    <div class="info">
-        <table>
-            <tr>
-                <td>{{ post.title }}</td>
-            </tr>
-            <tr>
-                <td>Dato:</td>
-                <td>{{ post.start }}</td>
-            </tr>
-            <tr>
-                <td>Start Tidspunkt</td>
-                <td>Slut Tidspunkt</td>
-            </tr>
-            <tr>
-                <td>{{ post.time_start }}</td>
-                <td>{{ post.time_end }}</td>
-            </tr>
-            <tr>
-                <td>{{ post.desc }}</td>
-            </tr>
-        </table>
+  <div class="show_event_rute">{{ post.rute | safe }}</div>
+  <div class="show_event_info">
+    <div class="show_event_title"><h2>{{ post.title }}</h2></div>
+
+    <div class="show_event_content">
+      <div class="show_event_start_label">
+        Dato:
+        <div class="show_event_start">{{ post.start }}</div>
+      </div>
+      <div class="show_event_time_start_label">
+        Begivenhed Start-tid:
+        <div class="show_event_time_start">{{ post.time_start }}</div>
+      </div>
+      <div class="show_event_time_end_label">
+        Begivenhed Slut-tid:
+        <div class="show_event_time_end">{{ post.time_end }}</div>
+      </div>
+      <div class="show_event_beskrivelse">
+        <div style="text-decoration: underline">Beskrivelse</div>
+        <div class="show_event_desc">{{ post.desc }}</div>
+      </div>
+      {% if post.bruger == current_user%}
+      <div class="show_event_edit">
+        <li class="edit_event_knap">
+          <a href="{{url_for('edit_event', event_id = post.id)}}">Rediger</a>
+        </li>
+      </div>
+      {% endif %}
     </div>
+  </div>
 </div>
 {% endblock %}
