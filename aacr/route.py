@@ -91,17 +91,17 @@ def register():
         return redirect(url_for('index'))
     # Hvis formen godkendes, når der trykkes submit, bliver linjer 50-56 udført.
     if form.validate_on_submit():
-        # laver en variabel "crypt_password" 
+        # laver en variabel "crypt_password"
         # bcrypt tager inputtet fra password feltet, og ovskriver koden til en 16-bit string
         crypt_password = bcrypt.generate_password_hash(
             form.password.data).decode('utf-8')
-        # Variabel "user" bliver linket til User databasen. 
+        # Variabel "user" bliver linket til User databasen.
         # "username=" siger at den kommende info skal gemmes i username kolonnen i User tabellen.
         # "form.username.data" er dataen, som brugeren skriver ind i Registeringsformen, under Username feltet.
         # password=crypt_password gemmer crypt_password variabelen i password kolonnen i User tabellen.
         user = User(username=form.username.data,
                     email=form.email.data, password=crypt_password)
-        # Tilføjer user variabelen til User tabellen. 
+        # Tilføjer user variabelen til User tabellen.
         # Username, email og password input bliver lagt ind, i databasen.
         db.session.add(user)
         # Ændringer gemmes
@@ -110,7 +110,7 @@ def register():
         flash("Konto Oprettet", 'success')
         # Sender brugeren videre til login funktionen.
         return redirect(url_for('login'))
-    # Titelen til siden bliver sat til Registerer. 
+    # Titelen til siden bliver sat til Registerer.
     # Registereringsformen bliver sendt til register.html, sådan at brugeren kan se og udfylde.
     return render_template("register.html", title="Registrer", form=form)
 
@@ -156,24 +156,37 @@ def show_event(event_id):
 @app.route('/showevent/<int:event_id>/edit', methods=['GET', 'POST'])
 def edit_event(event_id):
     event = NyEvent.query.get_or_404(event_id)
-    if event.bruger != current_user:
+    if event.bruger == current_user or current_user.is_admin:
+        form = AddEventForm()
+        if form.validate_on_submit():
+            event.title = form.title.data
+            event.start = form.start.data
+            event.time_start = form.time_start.data
+            event.time_end = form.time_end.data
+            event.rute = form.rute.data
+            event.desc = form.desc.data
+            db.session.commit()
+            flash('Begivenhed Opdateret', 'success')
+            return redirect(url_for('show_event', event_id=event_id))
+        elif request.method == 'GET':
+            form.title.data = event.title
+            form.start.data = event.start
+            form.time_start.data = event.time_start
+            form.time_end.data = event.time_end
+            form.rute.data = event.rute
+            form.desc.data = event.desc
+    else:
         abort(404)
-    form = AddEventForm()
-    if form.validate_on_submit():
-        event.title = form.title.data
-        event.start = form.start.data
-        event.time_start = form.time_start.data
-        event.time_end = form.time_end.data
-        event.rute = form.rute.data
-        event.desc = form.desc.data
-        db.session.commit()
-        flash('Begivenhed Opdateret', 'success')
-        return redirect(url_for('show_event', event_id=event_id))
-    elif request.method == 'GET':
-        form.title.data = event.title
-        form.start.data = event.start
-        form.time_start.data = event.time_start
-        form.time_end.data = event.time_end
-        form.rute.data = event.rute
-        form.desc.data = event.desc
     return render_template('add_event.html', title='Edit Event', form=form, legend="Rediger Event")
+
+
+@app.route('/showevent/<int:event_id>/delete', methods=['GET', 'POST'])
+def delete_event(event_id):
+    event = NyEvent.query.get_or_404(event_id)
+    if event.bruger == current_user or current_user.is_admin:
+        db.session.delete(event)
+        db.session.commit()
+        flash('Begivenhed slettet', 'success')
+    else:
+        abort(404)
+    return redirect(url_for('cal'))

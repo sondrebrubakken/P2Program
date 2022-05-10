@@ -75,7 +75,7 @@ class AddEventForm(FlaskForm):
     time_end = TimeField('Slut Tidpunkt', format='%H:%M',
                          validators=[DataRequired()])
     rute = QuerySelectField(
-        'Vælg en rute', query_factory=GetRute, allow_blank=True, get_label='name', render_kw={
+        '(Optional) Vælg en rute', query_factory=GetRute, allow_blank=True, get_label='name', render_kw={
             'placeholder': 'Vælg rute:'})
     desc = TextAreaField('Beskrivelse', validators=[
                          DataRequired(), Length(min=3, max=300)], render_kw={
@@ -89,7 +89,8 @@ class MultiCheckboxField(SelectMultipleField):
 
 
 class RuteFilter(FlaskForm):
-    choice = SelectField("Terreng:", choices=[('null', 'Vælg Terreng'), ('byen', 'Byen'), ('land', 'Landevej')], validate_choice=False)
+    choice = SelectField("Terreng:", choices=[(
+        'null', 'Vælg Terreng'), ('byen', 'Byen'), ('land', 'Landevej')], validate_choice=False)
     distance = SelectField("Distance:", choices=[('null', 'Vælg Distance'),
                            ('low', '>50'), ('high', '<50')], validate_choice=False)
     submit = SubmitField('Søg')

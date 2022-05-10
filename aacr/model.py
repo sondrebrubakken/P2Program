@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(25), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
-    is_admin = db.Column(db.Boolean, default=False)
+    is_admin = db.Column(db.Boolean, default=True)
     is_trainer = db.Column(db.Boolean, default=False)
     is_user = db.Column(db.Boolean, default=True)
     nyevent = db.relationship('NyEvent', backref='bruger', lazy=True)
@@ -64,7 +64,7 @@ class NyEvent(db.Model):
     start = db.Column(db.Date)
     time_start = db.Column(db.Time, default=datetime.utcnow)
     time_end = db.Column(db.Time, default=datetime.utcnow)
-    rute = db.Column(db.String(255), nullable=False)
+    rute = db.Column(db.String(255), nullable=True)
     desc = db.Column(db.String(255), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 

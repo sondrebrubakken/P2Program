@@ -79,9 +79,9 @@ header {
   background-color: rgba(0, 61, 77, 0.8);
 }
 
-.edit_event_knap {
+.edit_event_knap a {
   padding: 9px 20px;
-  background-color: rgb(0, 79, 98);
+  background-color: rgb(0, 128, 160);
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -92,14 +92,17 @@ header {
   max-width: 100%;
   width: fit-content;
   vertical-align: bottom;
-}
-
-.edit_event_knap a {
   text-decoration: none;
   color: white;
 }
-.edit_event_knap:hover {
-  background-color: rgba(0, 61, 77, 0.8);
+.delete-knp {
+  color: #fff;
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+}
+
+.edit_event_knap {
+  display: flex;
 }
 
 .nav-links a {
@@ -152,7 +155,6 @@ nav.navmenu {
   text-align: center;
   margin: 15px 5.5em;
   width: 465px;
-  height: 100%;
   padding-top: 10px;
   border-radius: 1em;
 }
@@ -164,6 +166,13 @@ nav.navmenu {
   border-radius: 10px;
   margin: 10px;
   background-color: white;
+}
+
+.no-rute-event {
+  width: 457px;
+  height: 457px;
+  border-radius: 10px;
+  margin: 49px 0 0 25px;
 }
 
 .rute_info_2 {
@@ -186,6 +195,7 @@ iFrame {
   border-radius: 1em;
   width: 1000px;
   margin-left: 12em;
+  height: 546.5px;
 }
 
 .show_event_info {
@@ -276,11 +286,11 @@ iFrame {
   padding: 10px;
   border-radius: 10px;
   color: white !important;
-  margin-left: 29.5em;
 }
 
 .search-div {
   margin-right: 10px;
+  margin-left: 21em;
 }
 .filter-bar {
   display: flex;
@@ -300,6 +310,10 @@ iFrame {
 
 .opret-rute-div {
   align-items: center;
+}
+
+.opret-rute-knp {
+  margin-left: 0.5em;
 }
 
 .opret-rute-div a {
