@@ -1,0 +1,62 @@
+{% extends 'admin/master.html' %}{% block head_css %} {{super()}}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='admin.css') }}"
+/>
+
+{% endblock head_css %} {% block body %}
+<div>
+  <div>
+    <h1>Work-In-Progress Admin-View</h1>
+  </div>
+  <div>
+    <h3>Ændre bruger-rettigheder</h3>
+    <div>
+      <p>
+        Bruger-rettigheder kan ændres under
+        <a href="/admin/user">"User"</a> tabben.
+      </p>
+      <br />
+      <p>Her kan man vælge hvilke rettigheder brugerne skal have.</p>
+      <br />
+      <p>
+        Denne side viser også hvem der har oprettett de forskellige
+        begivenheder. Dette kan ses ved at trykke på rediger knappen, på en
+        specifik bruger.
+      </p>
+      <p>NB! Hvis en bruger har glemt sin kode, SKAL den ikke ændres her!</p>
+    </div>
+  </div>
+  <div>
+    <h3>Redigere/Slette Begivenheder</h3>
+    <div>
+      <p>
+        Kalender-events kan ændres/slettes under
+        <a href="/admin/nyevent">"NyEvent"</a> tabben.
+      </p>
+      <br />
+      <p>Her kan titel, beskrivelse og rute ændres eller slettes.</p>
+      <br />
+      <p>
+        Brugeren der har oprettet eventet har også mulighed for at redigere
+        deres begivenhed.
+      </p>
+    </div>
+  </div>
+
+  <div>
+    <h3>Redigere/Slette Ruter</h3>
+    <div>
+      <p>
+        Ruter kan ændres/slettes under
+        <a href="/admin/rute">"Rute"</a> tabben.
+      </p>
+      <br />
+      <p>Her kan Ruten, rute-beskrivelsen, distancen mm. ændres</p>
+      <br />
+      <p>Dettet er det eneste sted, hvor ruter kan ændres/redigeres.</p>
+    </div>
+  </div>
+</div>
+{% endblock body %}

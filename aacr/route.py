@@ -26,7 +26,6 @@ def cal():
 def ruter():
     ruter = Rute.query.all()
     form = RuteFilter(choice="null", distance="null")
-    test = True
     if form.validate_on_submit():
         if form.choice.data == "byen" and form.distance.data == "low":
             ruter = Rute.query.filter(
@@ -50,7 +49,7 @@ def ruter():
             ruter = Rute.query.filter(Rute.dist >= 50).all()
         else:
             flash('Ingen ruter tilgængelig fra dette filter', 'danger')
-        
+
         return render_template("ruter.html", form=form, ruter=ruter)
     return render_template("ruter.html", title="Ruter", form=form, ruter=ruter)
 
@@ -66,13 +65,16 @@ def login():
     form = LoginForm()
     # Hvis formen godkendes, når der trykkes submit, bliver linjer 37-41 udført.
     if form.validate_on_submit():
-        # "user_info" variabelen bliver lavet. Den bliver linket til funktionen, der leder igennem databasen efter brugernavnet som brugeren har skrevet ind, i LoginFormen.
-        # Den vælger det første(og eneste) brugernavn, der samsvarer, med brugerens input. Hvis der ikke er et brugernevn, er variabelen ikke gyldig.
-        user_info = User.query.filter_by(username=form.username.data).first()
-        # Linje 42-43 bliver udført kun hvis user_info giver et brugernavn, og Bcrypts password hash samsvarer med koden brugeren har skrevet ind.
-        if user_info and bcrypt.check_password_hash(user_info.password, form.password.data):
+        # "user_info" variabelen bliver lavet. Den bliver linket til funktionen,
+        # der leder igennem databasen efter brugernavnet som brugeren har skrevet ind, i LoginFormen.
+        # Den vælger det første(og eneste) brugernavn, der samsvarer,
+        # med brugerens input. Hvis der ikke er et brugernevn, er variabelen ikke gyldig.
+        user_name = User.query.filter_by(username=form.username.data).first()
+        # Linje 42-43 bliver udført kun hvis user_info giver et brugernavn,
+        # og Bcrypts password hash samsvarer med koden brugeren har skrevet ind.
+        if user_name and bcrypt.check_password_hash(user_name.password, form.password.data):
             # Funktion
-            login_user(user_info)
+            login_user(user_name)
             return redirect(url_for('index'))
         flash('Fejl med brugernavn eller kode', 'danger')
     return render_template("login.html", title="Login", form=form)
@@ -89,15 +91,18 @@ def register():
         return redirect(url_for('index'))
     # Hvis formen godkendes, når der trykkes submit, bliver linjer 50-56 udført.
     if form.validate_on_submit():
-        # laver en variabel "crypt_password" hvor bcrypt tager inputtet fra password feltet, og genererer et "crypteret password"
+        # laver en variabel "crypt_password" 
+        # bcrypt tager inputtet fra password feltet, og ovskriver koden til en 16-bit string
         crypt_password = bcrypt.generate_password_hash(
             form.password.data).decode('utf-8')
-        # Variabel "user" bliver linket til User databasen. "username=" siger at den kommende info skal gemmes i username kolonnen i User tabellen.
+        # Variabel "user" bliver linket til User databasen. 
+        # "username=" siger at den kommende info skal gemmes i username kolonnen i User tabellen.
         # "form.username.data" er dataen, som brugeren skriver ind i Registeringsformen, under Username feltet.
         # password=crypt_password gemmer crypt_password variabelen i password kolonnen i User tabellen.
         user = User(username=form.username.data,
                     email=form.email.data, password=crypt_password)
-        # Tilføjer user variabelen til User tabellen. Username, email og password input bliver lagt ind, i databasen.
+        # Tilføjer user variabelen til User tabellen. 
+        # Username, email og password input bliver lagt ind, i databasen.
         db.session.add(user)
         # Ændringer gemmes
         db.session.commit()
@@ -105,7 +110,8 @@ def register():
         flash("Konto Oprettet", 'success')
         # Sender brugeren videre til login funktionen.
         return redirect(url_for('login'))
-    # Titelen til siden bliver sat til Registerer. Registereringsformen bliver sendt til register.html, sådan at brugeren kan se og udfylde.
+    # Titelen til siden bliver sat til Registerer. 
+    # Registereringsformen bliver sendt til register.html, sådan at brugeren kan se og udfylde.
     return render_template("register.html", title="Registrer", form=form)
 
 

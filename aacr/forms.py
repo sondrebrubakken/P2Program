@@ -89,8 +89,7 @@ class MultiCheckboxField(SelectMultipleField):
 
 
 class RuteFilter(FlaskForm):
-    choice = SelectField("Terreng:", choices=[('null', 'Vælg Terreng'),
-                                              ('byen', 'Byen'), ('land', 'Landevej')], validate_choice=False)
+    choice = SelectField("Terreng:", choices=[('null', 'Vælg Terreng'), ('byen', 'Byen'), ('land', 'Landevej')], validate_choice=False)
     distance = SelectField("Distance:", choices=[('null', 'Vælg Distance'),
                            ('low', '>50'), ('high', '<50')], validate_choice=False)
     submit = SubmitField('Søg')
