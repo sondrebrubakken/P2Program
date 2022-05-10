@@ -199,8 +199,8 @@ nav.navmenu {
 .no-rute-event {
   width: 457px;
   height: 457px;
-  border-radius: 10px;
-  margin: 49px 0 0 25px;
+  border-radius: 1rem;
+  margin: 49px 0 0 55px;
 }
 
 .rute_info_2 {
@@ -224,14 +224,14 @@ iFrame {
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-radius: 1em;
-  width: 1000px;
-  margin-left: 12em;
+  width: 100%;
   height: 546.5px;
+  justify-content: center;
 }
 
 .show_event_info {
   height: 455px;
-  width: 440px;
+  width: 560px;
   margin-top: 50px;
   border: 2px solid white;
   border-radius: 1em;
@@ -239,9 +239,11 @@ iFrame {
   color: white;
   display: flex;
   flex-direction: column;
+  margin-right: 60px;
 }
 .show_event_rute {
   padding: 25px;
+  margin-left: 30px;
 }
 .show_event_title {
   text-align: center;
