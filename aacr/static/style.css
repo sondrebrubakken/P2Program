@@ -184,6 +184,7 @@ nav.navmenu {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-content: space-between;
+  padding-left: 100px;
 }
 
 .rute_info_1 {
@@ -321,14 +322,17 @@ iFrame {
 .filter-bar {
   display: inline-block;
   align-content: space-between;
+  padding-left: 100px;
 }
 
 .content-container {
   margin: auto;
   max-width: 1200px;
-  padding-left: 100px;
 }
 
+.content-container div {
+  justify-content: center;
+}
 
 .content-container .ruter-content,
 .filter-bar {

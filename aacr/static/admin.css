@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
 body {
   font-family: "Montserrat";
   background-image: url(./images/geometry2.png) !important;
@@ -18,12 +20,11 @@ body {
 
 .admin-grid-info div {
   display: inline-grid;
-  padding: 10px;
-  width: 500px;
 }
 
 .admin-grid div {
   display: block;
+  padding: 10px;
 }
 
 .admin-grid {
@@ -31,9 +32,15 @@ body {
   margin: 5px;
   border-radius: 5px;
   border: 2px solid black;
-  height: fit-content;
+  width: 350px;
+  height: 375px;
 }
 
 .admin-tutorial h1 {
   text-align: center;
+}
+
+.admin-grid h3 {
+  padding: 10px;
+  line-height: 30px;
 }
