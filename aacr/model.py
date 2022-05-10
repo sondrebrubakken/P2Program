@@ -73,8 +73,11 @@ class MainIndexLink(MenuLink):
     def get_url(self):
         return url_for("index")
 
+class UserModelView(AdminControl):
+    column_exclude_list = ('password')
 
-admin.add_view(AdminControl(User, db.session))
+
+admin.add_view(UserModelView(User, db.session))
 admin.add_view(AdminControl(NyEvent, db.session))
 admin.add_view(AdminControl(Rute, db.session))
 admin.add_link(MainIndexLink(name="Tilbage til forsiden"))

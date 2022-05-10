@@ -13,7 +13,7 @@ import sqlalchemy
 
 @app.route("/")
 def index():
-    return render_template("index.html", title="Hjem")
+    return render_template("forside.html", title="Hjem")
 
 
 @app.route("/cal")
@@ -143,7 +143,8 @@ def nyrute():
                          dist=form.dist.data, land=form.land.data, byen=form.byen.data)
             db.session.add(ruter)
             db.session.commit()
-            return redirect(url_for('nyrute'))
+            flash('Rute oprettet', 'success')
+            return redirect(url_for('ruter'))
     return render_template('nyrute.html', title="Nye ruter", form=form)
 
 

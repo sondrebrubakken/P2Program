@@ -70,9 +70,18 @@ header {
   display: flex;
 }
 
+.forside-billede{
+  text-align: center;
+  margin-bottom: 3em;
+}
+
 .login-ud a {
   text-decoration: none;
   color: white;
+}
+
+.rute-img{
+  padding-left: -5px;
 }
 
 .login-ud:hover {

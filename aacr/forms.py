@@ -69,7 +69,7 @@ class AddEventForm(FlaskForm):
     title = StringField('Titel', validators=[
                         DataRequired(), Length(min=3, max=30)], render_kw={
         'placeholder': 'Titel...'})
-    start = DateField('Dato', validators=[DataRequired()])
+    start = DateField('Dato', validators=[DataRequired()],format='%D-%M-%Y')
     time_start = TimeField('Start Tidpunkt', format='%H:%M',
                            validators=[DataRequired()])
     time_end = TimeField('Slut Tidpunkt', format='%H:%M',
