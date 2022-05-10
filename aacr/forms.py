@@ -69,7 +69,7 @@ class AddEventForm(FlaskForm):
     title = StringField('Titel', validators=[
                         DataRequired(), Length(min=3, max=30)], render_kw={
         'placeholder': 'Titel...'})
-    start = DateField('Dato', validators=[DataRequired()],format='%D-%M-%Y')
+    start = DateField('Dato', validators=[DataRequired()])
     time_start = TimeField('Start Tidpunkt', format='%H:%M',
                            validators=[DataRequired()])
     time_end = TimeField('Slut Tidpunkt', format='%H:%M',
@@ -89,8 +89,8 @@ class MultiCheckboxField(SelectMultipleField):
 
 
 class RuteFilter(FlaskForm):
-    choice = SelectField("Terreng:", choices=[(
+    choice = SelectField("Terræn:", choices=[(
         'null', 'Vælg Terreng'), ('byen', 'Byen'), ('land', 'Landevej')], validate_choice=False)
     distance = SelectField("Distance:", choices=[('null', 'Vælg Distance'),
                            ('low', '>50'), ('high', '<50')], validate_choice=False)
-    submit = SubmitField('Søg')
+    submit = SubmitField('Filter Søg')

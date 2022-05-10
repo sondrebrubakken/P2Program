@@ -11,10 +11,8 @@
       {{form.distance(placeholder="Distance:")}}
     </div>
   </div>
-  <div class="search-div"><a href="">
-    {{ form.submit(class="search-knp") }}</a>
-    </div>
     <div class="opret-rute-div">
+      {{ form.submit(class="search-knp") }}</a>
   {% if current_user.is_admin or current_user.is_trainer %}
   <a
     href="{{ url_for('nyrute') }}"

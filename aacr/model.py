@@ -54,9 +54,6 @@ class Rute(db.Model):
     land = db.Column(db.Boolean, default=False)
     byen = db.Column(db.Boolean, default=False)
 
-    def __repr__(self):
-        return '{}'.format(self.rute)
-
 
 class NyEvent(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -75,7 +72,7 @@ class MainIndexLink(MenuLink):
 
 class UserModelView(AdminControl):
     column_exclude_list = ('password')
-
+    
 
 admin.add_view(UserModelView(User, db.session))
 admin.add_view(AdminControl(NyEvent, db.session))

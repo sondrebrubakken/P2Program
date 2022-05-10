@@ -47,9 +47,6 @@ def ruter():
             ruter = Rute.query.filter(Rute.dist <= 50).all()
         elif form.distance.data == "high":
             ruter = Rute.query.filter(Rute.dist >= 50).all()
-        else:
-            flash('Ingen ruter tilgængelig fra dette filter', 'danger')
-
         return render_template("ruter.html", form=form, ruter=ruter)
     return render_template("ruter.html", title="Ruter", form=form, ruter=ruter)
 
@@ -75,6 +72,7 @@ def login():
         if user_name and bcrypt.check_password_hash(user_name.password, form.password.data):
             # Funktion
             login_user(user_name)
+            flash(f'Bruger "{current_user.username}" loggede ind!','success')
             return redirect(url_for('index'))
         flash('Fejl med brugernavn eller kode', 'danger')
     return render_template("login.html", title="Login", form=form)
@@ -130,6 +128,7 @@ def add_event():
                             time_end=form.time_end.data, rute=form.rute.data, desc=form.desc.data, bruger=current_user)
             db.session.add(event)
             db.session.commit()
+            flash(f'Event Oprettet på Dato: {event.start}','success')
             return redirect(url_for('cal'))
     return render_template('add_event.html', title='Add Event', form=form, legend="Opret Event")
 
