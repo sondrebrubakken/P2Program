@@ -323,14 +323,17 @@ iFrame {
   align-content: space-between;
 }
 
-.container {
+.content-container {
   margin: auto;
-  align-content: center !important;
+  max-width: 1200px;
+  padding-left: 100px;
 }
 
-.container .ruter-content,
+
+.content-container .ruter-content,
 .filter-bar {
   max-width: 100%;
+  align-content: center;
 }
 
 .filter-bar a {
