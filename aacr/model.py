@@ -1,5 +1,3 @@
-from multiprocessing.dummy import Value
-from tkinter import Scale
 from flask import redirect, abort, url_for
 from flask_sqlalchemy import sqlalchemy
 from datetime import datetime
@@ -54,6 +52,9 @@ class Rute(db.Model):
     land = db.Column(db.Boolean, default=False)
     byen = db.Column(db.Boolean, default=False)
 
+
+    def __repr__(self):
+        return '{}'.format(self.rute)
 
 class NyEvent(db.Model):
     id = db.Column(db.Integer, primary_key=True)

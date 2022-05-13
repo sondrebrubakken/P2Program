@@ -1,13 +1,9 @@
-from email.policy import default
-from tokenize import String
-from unicodedata import name
 from flask import Flask
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, PasswordField, SubmitField, BooleanField, DateField, TextAreaField, ValidationError, FloatField, DecimalField, SelectMultipleField, widgets
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms_components import TimeField
-from werkzeug.datastructures import MultiDict
 from aacr.model import User, Rute
 
 
@@ -79,13 +75,9 @@ class AddEventForm(FlaskForm):
             'placeholder': 'Vælg rute:'})
     desc = TextAreaField('Beskrivelse', validators=[
                          DataRequired(), Length(min=3, max=300)], render_kw={
-                             'placeholder': 'Rute beskrivelse...'})
+                             'placeholder': 'Beskrivelse...'})
     submit = SubmitField('Opret')
 
-
-class MultiCheckboxField(SelectMultipleField):
-    widget = widgets.ListWidget(prefix_label=False)
-    option_widget = widgets.CheckboxInput()
 
 
 class RuteFilter(FlaskForm):

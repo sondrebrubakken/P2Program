@@ -1,6 +1,3 @@
-from operator import and_
-from os import abort
-from turtle import title
 from aacr import app, bcrypt
 from aacr import db
 from flask import render_template, request, url_for, redirect, flash, abort
@@ -8,7 +5,6 @@ from aacr.forms import RegistrationForm, LoginForm, AddEventForm, RuteForm, Rute
 from aacr.model import NyEvent, User
 from flask_login import login_user, current_user, logout_user
 from sqlalchemy import and_
-import sqlalchemy
 
 
 @app.route("/")
