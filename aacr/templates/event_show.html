@@ -1,6 +1,6 @@
 {% extends 'index.html' %} {% block content %}
 <div class="show_event_container">
-  {% if post.rute == None %}
+  {% if not post.rute %}
   <img class="no-rute-event" src="../static/images/freedom.png" alt="" />
   {% else %}
   <div class="show_event_rute">{{ post.rute | safe }}</div>

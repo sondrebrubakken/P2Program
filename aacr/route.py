@@ -25,20 +25,20 @@ def ruter():
     if form.validate_on_submit():
         if form.choice.data == "byen" and form.distance.data == "low":
             ruter = Rute.query.filter(
-                and_(Rute.byen == 1, Rute.dist <= 50)).all()
+                and_(Rute.byen == "t", Rute.dist <= 50)).all()
         elif form.choice.data == "byen" and form.distance.data == "high":
             ruter = Rute.query.filter(
-                and_(Rute.byen == 1, Rute.dist >= 50)).all()
+                and_(Rute.byen == "t", Rute.dist >= 50)).all()
         elif form.choice.data == "land" and form.distance.data == "low":
             ruter = Rute.query.filter(
-                and_(Rute.land == 1, Rute.dist <= 50)).all()
+                and_(Rute.land == "t", Rute.dist <= 50)).all()
         elif form.choice.data == "land" and form.distance.data == "high":
             ruter = Rute.query.filter(
-                and_(Rute.land == 1, Rute.dist >= 50)).all()
+                and_(Rute.land == "t", Rute.dist >= 50)).all()
         elif form.choice.data == "byen":
-            ruter = Rute.query.filter(Rute.byen == 1).all()
+            ruter = Rute.query.filter(Rute.byen == "t").all()
         elif form.choice.data == "land":
-            ruter = Rute.query.filter(Rute.land == 1).all()
+            ruter = Rute.query.filter(Rute.land == "t").all()
         elif form.distance.data == "low":
             ruter = Rute.query.filter(Rute.dist <= 50).all()
         elif form.distance.data == "high":
