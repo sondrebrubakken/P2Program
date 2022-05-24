@@ -6,7 +6,7 @@ from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms_components import TimeField
 from aacr.model import User, Rute
 
-
+#Registrerings form for brugere
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[
                            DataRequired(), Length(min=3, max=30)], render_kw={
@@ -19,7 +19,7 @@ class RegistrationForm(FlaskForm):
                                      DataRequired(), EqualTo('password')], render_kw={
         'placeholder': 'Password...'})
     submit = SubmitField('Opret Konto')
-
+#Ligger i registreringsklassen. Når bruger bliver oprettet, tjekkes der om brugernavn og email allerede eksisterer
     def validate_user(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user:
