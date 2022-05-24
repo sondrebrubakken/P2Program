@@ -5,13 +5,18 @@ from flask_bcrypt import Bcrypt
 from flask_admin import Admin
 import pymysql
 
-
+#Initializer flask appen
 app = Flask(__name__)
+#Laver en connection imellem programmet og databasen
 app.config['SECRET_KEY'] = "1233333"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ivchxmmvffrlut:976510306967a03e03384de004403d92333bad9cde9d098eeba62c72b854012c@ec2-3-224-164-189.compute-1.amazonaws.com:5432/df4ejaolpl201o'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:admin@localhost/projekt'
+#Initialiserer databasen
 db = SQLAlchemy(app)
+#Initialiserer bcrypt
 bcrypt = Bcrypt(app)
+#Initialiserer Flask login
 login_man = LoginManager(app)
+#Initialiserer Flask Admin
 admin = Admin(app)
 login_man.login_view = "login"
 login_man.login_message_category = "info"
