@@ -44,7 +44,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Log Ind')
 
 
-# Input-form som bruger kan se, når de opretter en rute. DataRequired betyder at det skal fyldes ud
+# Input-form som bruger kan se, når de opretter en rute. 
 
 class RuteForm(FlaskForm):
     name = StringField('Rute Navn', validators=[DataRequired()], render_kw={
@@ -60,11 +60,11 @@ class RuteForm(FlaskForm):
     byen = BooleanField('Byrute', render_kw={'value': 1}, default=False)
     submit = SubmitField('Submit')
 
-
+#Funktion der heder get rute, funktionens output er alle informationer fra "Rute" databasemodel. 
 def GetRute():
     return Rute.query
 
-
+#Form for at lave et nyt event. "rute" bruger GetRute funktion, for at lave et selectField, med outputtet fra GetRute
 class AddEventForm(FlaskForm):
     title = StringField('Titel', validators=[
                         DataRequired(), Length(min=3, max=30)], render_kw={
@@ -78,19 +78,15 @@ class AddEventForm(FlaskForm):
         '(Optional) Vælg en rute', query_factory=GetRute, allow_blank=True, get_label='name', render_kw={
             'placeholder': 'Vælg rute:'})
     desc = TextAreaField('Beskrivelse', validators=[
-                         DataRequired(), Length(min=3, max=300)], render_kw={
-                             'placeholder': 'Rute beskrivelse...'})
+                         DataRequired(), Length(min=3, max=250)], render_kw={
+                             'placeholder': 'Beskrivelse...'})
     submit = SubmitField('Opret')
 
 
-class MultiCheckboxField(SelectMultipleField):
-    widget = widgets.ListWidget(prefix_label=False)
-    option_widget = widgets.CheckboxInput()
-
-
+#Filter muligheder fra Rute siden.
 class RuteFilter(FlaskForm):
     choice = SelectField("Terræn:", choices=[(
-        'null', 'Vælg Terreng'), ('byen', 'Byen'), ('land', 'Landevej')], validate_choice=False)
+        'null', 'Vælg Terræn'), ('byen', 'Byen'), ('land', 'Landevej')], validate_choice=False)
     distance = SelectField("Distance:", choices=[('null', 'Vælg Distance'),
                            ('low', '>50'), ('high', '<50')], validate_choice=False)
-    submit = SubmitField('Filter Søg')
+    submit = SubmitField('Søg')

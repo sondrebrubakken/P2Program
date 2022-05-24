@@ -11,6 +11,15 @@ body {
   width: fit-content;
 }
 
+.pull-right {
+  background-color: #1e343ad8;
+  color: white;
+}
+.pull-right li a {
+  color: white !important;
+  text-shadow: none !important;
+}
+
 .admin-grid-info {
   display: block;
   padding-right: 2em;

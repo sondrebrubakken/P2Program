@@ -1,6 +1,3 @@
-from operator import and_
-from os import abort
-from turtle import title
 from aacr import app, bcrypt
 from aacr import db
 from flask import render_template, request, url_for, redirect, flash, abort
@@ -21,11 +18,12 @@ def cal():
     site_events = NyEvent.query.all()
     return render_template("cal.html", title="Kalender", site_events=site_events)
 
-
+#Rute siden. Viser ruter. Funktion for filtrering
 @app.route("/ruter", methods=['POST', 'GET'])
 def ruter():
     ruter = Rute.query.all()
     form = RuteFilter(choice="null", distance="null")
+    #RuteFilter Form
     if form.validate_on_submit():
         if form.choice.data == "byen" and form.distance.data == "low":
             ruter = Rute.query.filter(
@@ -152,23 +150,33 @@ def show_event(event_id):
     show_event = NyEvent.query.get_or_404(event_id)
     return render_template('event_show.html', post=show_event)
 
-
+#Rediger event
 @app.route('/showevent/<int:event_id>/edit', methods=['GET', 'POST'])
 def edit_event(event_id):
+    #Querier Event databasen
     event = NyEvent.query.get_or_404(event_id)
+    #Tjekker om bruger er admin er træner
     if event.bruger == current_user or current_user.is_admin:
+        #Henter den samme form, som der bliver brugt til at oprette event
         form = AddEventForm()
+        #Når brugeren trykker submit, bliver det der står i dette IF statement udført
         if form.validate_on_submit():
+            #Den nye titel, som brugeren laver, bliver ændret til det brugeren inputter i feltet
             event.title = form.title.data
             event.start = form.start.data
             event.time_start = form.time_start.data
             event.time_end = form.time_end.data
             event.rute = form.rute.data
             event.desc = form.desc.data
+            #committer til databasen
             db.session.commit()
+            #viser en besked til brugeren, at eventet er oprettet
             flash('Begivenhed Opdateret', 'success')
+            #sender brugeren tilvage til det samme event
             return redirect(url_for('show_event', event_id=event_id))
+        #Når brugeren trykker på eventet fra kalender siden, bliver 
         elif request.method == 'GET':
+            #titlen der står i databasen, bliver sadt ind i inputfæltet til titel input feltet i formen. 
             form.title.data = event.title
             form.start.data = event.start
             form.time_start.data = event.time_start
@@ -176,6 +184,7 @@ def edit_event(event_id):
             form.rute.data = event.rute
             form.desc.data = event.desc
     else:
+        #Hvis det ikke er en get request, altså en request til at se formen, eller at brugeren ikke har rettigheder, skal brugeren få en 404 error. 
         abort(404)
     return render_template('add_event.html', title='Edit Event', form=form, legend="Rediger Event")
 

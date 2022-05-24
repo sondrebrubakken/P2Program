@@ -1,41 +1,42 @@
-{% extends 'index.html' %}
-{% block content %}
+{% extends 'index.html' %} {% block content %}
 <div class="">
   <form method="post">
     {{ form.hidden_tag() }}
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card bg-custom-login border border-dark p-3" , style="border-radius:1rem; border-color:rgb(200, 200, 200) !important;">
+    <div class="opret-rute-felt row">
+      <div class="col-xl-5">
+        <div class="card bg-custom-login p-3">
           <div class="card-body text-light">
-            <p class="h4 mb-4 text-center text-light">Opret Rute</p>
-            {{ form.name.label() }}
-            {{ form.name(class="form-control mb-4") }}
-
-            {{ form.dist.label() }}
-            {{ form.dist(class="form-control mb-4") }}
-            <div class="custom-control custom-checkbox mb-4">
-              {{ form.byen(class="custom-control-input")}}
-              {{ form.byen.label(class="custom-control-label")}}
+            <p class="mb-4 text-center text-light">Opret Rute</p>
+            {{ form.name.label() }} {{ form.name(class="input-felt mb-4") }}
+            {{form.dist.label() }} {{ form.dist(class="input-felt mb-4") }}
+            <div class="mb-4">
+              {{ form.byen(class="")}} {{ form.byen.label(class="")}}
             </div>
 
-            <div class="custom-control custom-checkbox mb-4">
-              {{ form.land(class="custom-control-input")}}
-              {{ form.land.label(class="custom-control-label")}}
+            <div class="mb-4">
+              {{ form.land(class="custom-control-input")}} {{
+              form.land.label(class="custom-control-label")}}
             </div>
-            {{ form.desc.label() }}
-            {{ form.desc(class="form-control mb-4")}}
-
-            {{ form.rute.label() }}
-            {{ form.rute(class="form-control mb-4")}}
-            <p class="small mb-1 pb-lg-2">
-              <a class="text-light-50" href="https://support.garmin.com/en-US/?faq=tWx3JQyjlU474jqa91EJs8" target="_blank">Hvordan får jeg et iFrame?</a>
+            {{ form.desc.label() }} {{ form.desc(class="input-felt mb-4")}} {{
+            form.rute.label() }} {{ form.rute(class="input-felt mb-4")}}
+            <p class="small mb-1 pb-2">
+              <a
+                class="text-light-50"
+                href="https://support.garmin.com/en-US/?faq=tWx3JQyjlU474jqa91EJs8"
+                target="_blank"
+                >Hvordan får jeg et iFrame?</a
+              >
             </p>
-            <p class="small mb-1 pb-lg-2" style="font-style: italic;">Efter rute er oprettet på Garmin: Tryk "Make Public"->"Share"->"Embed"</p>
-            {{ form.submit(class="btn btn-light btn-outline-dark btn-lg px-5") }}
+            <p class="small mb-1 pb-2" style="font-style: italic">
+              Efter rute er oprettet på Garmin: Tryk "Make
+              Public"->"Share"->"Embed"
+            </p>
+            {{ form.submit(class="btn btn-light btn-outline-dark btn-lg px-5")
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
   </form>
+  {% endblock content %}
 </div>
-</div>
-</div>
-</div>
-</div>
-{% endblock content %}
